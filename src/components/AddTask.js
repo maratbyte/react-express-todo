@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addTask } from '../redux/tasksSlice';
+import addButton from './buttonImages/addTask.png' 
 
 const AddTask = () => {
   const taskCount = useSelector(state => state.tasks.length);
@@ -14,7 +15,7 @@ const AddTask = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className='addForm' onSubmit={onSubmit}>
       <input
         type='text'
         placeholder={taskCount ? 'Add another target' : 'Add your first target'}
@@ -22,7 +23,7 @@ const AddTask = () => {
         onChange={event => setText(event.target.value)}
         autoFocus
       />
-      <button>Add</button>
+      <button><img src={addButton} /></button>
     </form>
   )
 }
