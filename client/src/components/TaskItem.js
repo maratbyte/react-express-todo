@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleDone, deleteTask } from '../redux/tasksSlice';
+import { toggleDoneAsync, deleteTaskAsync } from '../redux/tasksSlice';
 import deleteButton from './buttonImages/deleteTask.png';
 
 const TaskItem = ({ id }) => {
@@ -11,10 +11,10 @@ const TaskItem = ({ id }) => {
       <input
         type='checkbox'
         checked={task.done}
-        onClick={() => dispatch(toggleDone(task.id))}
+        onChange={() => dispatch(toggleDoneAsync(task))}
       />
       <h2 className='taskTitle'>{task.title}</h2>
-      <button className='deleteBtn' onClick={() => dispatch(deleteTask(task.id))}><img src={deleteButton} /></button>
+      <button className='deleteBtn' onClick={() => dispatch(deleteTaskAsync(task.id))}><img src={deleteButton} alt='' /></button>
     </li>
   )
 }

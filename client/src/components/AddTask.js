@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTask } from '../redux/tasksSlice';
+import { addTaskAsync } from '../redux/tasksSlice';
 import addButton from './buttonImages/addTask.png' 
 
 const AddTask = () => {
@@ -10,7 +10,7 @@ const AddTask = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    if (text) dispatch(addTask(text));
+    if (text) dispatch(addTaskAsync(text));
     setText('');
   };
 
@@ -23,7 +23,7 @@ const AddTask = () => {
         onChange={event => setText(event.target.value)}
         autoFocus
       />
-      <button><img src={addButton} /></button>
+      <button><img src={addButton} alt='' /></button>
     </form>
   )
 }
