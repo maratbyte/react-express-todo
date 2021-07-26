@@ -27,7 +27,6 @@ function create(title) {
 function update(id, updates) {
     return new Promise((resolve, reject) => {
         const task = tasks.find(task => task.id === id);
-        console.log(updates);
         for (let prop in updates) {
             task[prop] = updates[prop];
         }
