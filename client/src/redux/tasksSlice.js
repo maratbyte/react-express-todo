@@ -31,7 +31,7 @@ export const addTaskAsync = createAsyncThunk(
 export const toggleDoneAsync = createAsyncThunk(
   'tasks/toggleDoneAsync',
   async (payload) => {
-    const response = await fetch(`http://localhost:4000/api/tasks/${payload.id}`, {
+    const response = await fetch(`http://localhost:4000/api/tasks/${payload._id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -87,11 +87,11 @@ export const tasksSlice = createSlice({
       state.push(action.payload);
     },
     [toggleDoneAsync.fulfilled]: (state, action) => {
-      const task = state.find(task => task.id === action.payload.id);
+      const task = state.find(task => task._id === action.payload._id);
       task.done = action.payload.done;
     },
-    [deleteTaskAsync.fulfilled]: (state, action) => {
-      return state.filter(task => task.id !== action.payload);
+    [deleteTaskAsync.fulfilled]: (state, action) => { 
+      return state.filter(task => task._id !== action.payload);
     }
   }
 });

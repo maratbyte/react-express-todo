@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import TaskItem from './TaskItem';
 
 const TaskList = () => {
-  const ids = useSelector(state => state.tasks.map(task => task.id));
+  const ids = useSelector(state => state.tasks.map(task => task._id));
 
   return (
     <ul className='list'>

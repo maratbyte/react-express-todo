@@ -3,7 +3,7 @@ import { toggleDoneAsync, deleteTaskAsync } from '../redux/tasksSlice';
 import deleteButton from './buttonImages/deleteTask.png';
 
 const TaskItem = ({ id }) => {
-  const task = useSelector(state => state.tasks.find(task => task.id === id));
+  const task = useSelector(state => state.tasks.find(task => task._id === id));
   const dispatch = useDispatch();
 
   return (
@@ -14,7 +14,7 @@ const TaskItem = ({ id }) => {
         onChange={() => dispatch(toggleDoneAsync(task))}
       />
       <h2 className='taskTitle'>{task.title}</h2>
-      <button className='deleteBtn' onClick={() => dispatch(deleteTaskAsync(task.id))}><img src={deleteButton} alt='' /></button>
+      <button className='deleteBtn' onClick={() => dispatch(deleteTaskAsync(task._id))}><img src={deleteButton} alt='' /></button>
     </li>
   )
 }

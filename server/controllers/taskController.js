@@ -1,8 +1,7 @@
-const Task = require('../models/taskModel');
+const Task = require('../models/Task');
 
 async function getTasks(req, res) {
-    const tasks = await Task.findAll();
-
+    const tasks = await Task.find();
     res.json(tasks);
 }
 
@@ -11,39 +10,24 @@ async function createTask(req, res) {
         return res.status(400).json({ message: 'Request body does not contain task title' });
     }
 
-    const newTask = await Task.create(req.body.title);
+    const newTask = new Task(req.body);
+    await newTask.save();
     
     res.status(201).json(newTask);
 }
 
 async function updateTask(req, res) {
-    if (!req.body) {
-        return response.status(400).json({ message: 'Request body does not contain any updates'});
-    }
-
-    const id = parseInt(req.params.id, 10);
-    const task = await Task.findById(id);
-
-    if (!task) {
-        return res.status(400).json({ message: `No task with the id of ${id}` });
-    }
-    
+    const id = req.params.id;
     const updates = req.body;
-    console.log(updates);
-    const updatedTask = await Task.update(id, updates);
+    const updatedTask = await Task.findByIdAndUpdate(id, updates, { new: true });
 
     res.json(updatedTask);
 }
 
 async function deleteTask(req, res) {
-    const id = parseInt(req.params.id, 10);
-    const task = await Task.findById(id);
+    const id = req.params.id;
+    await Task.findByIdAndDelete(id);
 
-    if (!task) {
-        return res.status(400).json({ message: `No task with the id of ${id}` });
-    }
-
-    await Task.remove(id);
     res.json({ message: 'Task deleted' });
 }
 

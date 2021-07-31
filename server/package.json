@@ -1,11 +1,11 @@
 {
-  "name": "TODO Server",
+  "name": "welldone",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple task tracker",
   "main": "server.js",
   "scripts": {
-    "test": "node server",
-    "dev": "nodemon express"
+    "start": "NODE_ENV=production node server",
+    "dev": "NODE_ENV=development nodemon server"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3"
   }
 }
